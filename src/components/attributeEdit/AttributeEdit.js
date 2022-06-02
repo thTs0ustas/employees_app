@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+
 import { useAttributeEdit } from './hooks/useAttributeEdit';
-import { TextField, Typography, Button, ButtonGroup } from '@mui/material';
+import { TextField, Typography, Button, ButtonGroup, Box } from '@mui/material';
 
 const AttributeEdit = ({
   editAttribute,
@@ -12,7 +12,7 @@ const AttributeEdit = ({
 }) => {
   const formik = useAttributeEdit(attributes, editAttribute, id);
   return (
-    <Form noValidate>
+    <Box component="form">
       <Typography variant="h2" component="h3" sx={{ fontSize: 24, fontWeight: 700 }}>
         EDIT ATTRIBUTE
       </Typography>
@@ -51,7 +51,7 @@ const AttributeEdit = ({
           Close
         </Button>
       </ButtonGroup>
-    </Form>
+    </Box>
   );
 };
 

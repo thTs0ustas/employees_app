@@ -1,28 +1,68 @@
 import React from 'react';
-import { EmployeeList, AttributeEdit, EmployeeForm } from '../../components';
+import { EmployeeList, EmployeeEdit, EmployeeForm } from '../../components';
 
-import { Col, Container, Row } from 'react-bootstrap';
 import { useEmployees } from './hooks/useEmployees';
+
+import { Box, Grid, Slide, Container } from '@mui/material';
 
 const Employees = () => {
   const props = useEmployees();
+  const containerRef = React.useRef(null);
+
   return (
     <Container>
-      <Row bsPrefix="attribute-list">
-        <Col xs={12} sm={4} className="shadow p-2 pt-5 front">
+      <Grid container>
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          sx={{
+            padding: '5em 2em 0 2em',
+            boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+            height: '90vh',
+          }}
+        >
           <EmployeeList {...props} />
-        </Col>
+        </Grid>
         {props.isAdding && (
-          <Col xs={12} sm={8} className="p-4 pt-5 transition-fadeIn">
-            <EmployeeForm {...props} />
-          </Col>
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            sx={{
+              padding: '5em 2em 0 2em',
+              height: '90vh',
+            }}
+          >
+            <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+              <Slide direction="right" container={containerRef.current} in={props.isAdding}>
+                <Grid item xs={12}>
+                  <EmployeeForm {...props} />
+                </Grid>
+              </Slide>
+            </Box>
+          </Grid>
         )}
         {props.isEditing.open && (
-          <Col xs={12} sm={8} className=" p-4 pt-5 transition-fadeIn">
-            <AttributeEdit {...props} />
-          </Col>
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            sx={{
+              padding: '5em 2em 0 2em',
+              height: '90vh',
+            }}
+          >
+            <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+              <Slide direction="right" container={containerRef.current} in={props.isEditing.open}>
+                <Grid item xs={12}>
+                  <EmployeeEdit {...props} />
+                </Grid>
+              </Slide>
+            </Box>
+          </Grid>
         )}
-      </Row>
+      </Grid>
     </Container>
   );
 };

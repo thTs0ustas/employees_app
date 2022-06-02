@@ -1,8 +1,8 @@
 import React from 'react';
 import { List, Button, ListItemButton, Typography, Divider } from '@mui/material';
+
 const AttributeList = ({ setIsEditing, isAdding, setIsAdding, attributeList }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };

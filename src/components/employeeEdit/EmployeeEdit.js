@@ -1,9 +1,8 @@
 import React from 'react';
-
-import { useEmployeeForm } from './hooks/useEmployeeForm';
-import attributeList from '../../data/ATTRIBUTE_LIST';
 import {
   Box,
+  Button,
+  ButtonGroup,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -13,18 +12,24 @@ import {
   Select,
   TextField,
   Typography,
-  Button,
-  ButtonGroup,
 } from '@mui/material';
+import attributeList from '../../data/ATTRIBUTE_LIST';
+import { useEmployeeEdit } from './hooks/useEmployeeEdit';
 
-const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
-  const formik = useEmployeeForm(addEmployee);
+const EmployeeEdit = ({
+  editEmployee,
+  deleteEmployee,
+  employees,
+  setIsEditing,
+  isEditing: { id },
+}) => {
+  const formik = useEmployeeEdit(employees, editEmployee, id);
+
   const options = attributeList.map((item) => item.name);
-
   return (
     <Box component="form">
       <Typography variant="h2" component="h3" sx={{ fontSize: 24, fontWeight: 700 }}>
-        NEW EMPLOYEE
+        EDIT EMPLOYEE
       </Typography>
       <TextField
         name="fullName"
@@ -101,9 +106,16 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
           variant="contained"
           color="primary"
         >
-          Add
+          Update
         </Button>
-        <Button onClick={() => setIsAdding(!isAdding)} variant="contained" color="secondary">
+        <Button onClick={() => deleteEmployee(id)} variant="contained" color="error">
+          Delete
+        </Button>
+        <Button
+          onClick={() => setIsEditing({ open: false, id: null })}
+          variant="contained"
+          color="secondary"
+        >
           Close
         </Button>
       </ButtonGroup>
@@ -111,4 +123,4 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
   );
 };
 
-export { EmployeeForm };
+export { EmployeeEdit };

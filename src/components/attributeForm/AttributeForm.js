@@ -1,13 +1,13 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+
 import { useAttributeForm } from './hooks/useAttributeForm';
-import { TextField, Typography, ButtonGroup, Button } from '@mui/material';
+import { TextField, Typography, ButtonGroup, Button, Box } from '@mui/material';
 
 const AttributeForm = ({ attributes, addAttribute, isAdding, setIsAdding }) => {
   const formik = useAttributeForm(attributes, addAttribute);
 
   return (
-    <Form noValidate>
+    <Box component="form">
       <Typography variant="h2" component="h3" sx={{ fontSize: 24, fontWeight: 700 }}>
         ADD NEW ATTRIBUTE
       </Typography>
@@ -37,7 +37,7 @@ const AttributeForm = ({ attributes, addAttribute, isAdding, setIsAdding }) => {
           Close
         </Button>
       </ButtonGroup>
-    </Form>
+    </Box>
   );
 };
 

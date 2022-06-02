@@ -1,15 +1,21 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useEffect } from 'react';
 import moment from 'moment';
 
-const useEmployeeForm = (addEmployee) => {
+const useEmployeeEdit = (employees, editEmployee, id) => {
+  useEffect(() => {
+    const {
+      info: { fullName, birthDate, hasCar, address, attributes },
+    } = employees.find((employee) => employee.id === id);
+    formik.setValues({ fullName, birthDate, hasCar, address, attributes }, false);
+  }, [id]);
+
   const SignupSchema = Yup.object().shape({
     fullName: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      // .test('fullName', 'Already exists', (value) =>
-      //   employees.every((item) => item.info.name !== value)
-      // )
+
       .required('Required'),
     birthDate: Yup.string()
       .test(
@@ -20,9 +26,16 @@ const useEmployeeForm = (addEmployee) => {
       .required('Required'),
     hasCar: Yup.boolean().required('Required'),
     address: Yup.string().required('Required'),
-    attributes: Yup.array().of(Yup.string()),
+    attributes: Yup.array()
+      .of(Yup.string())
+      .test(
+        'attributes',
+        'Already exists',
+        (value) => !employees.info?.attributes.every((item) => value.split('').includes(item))
+      ),
   });
-  return useFormik({
+
+  const formik = useFormik({
     initialValues: {
       fullName: '',
       birthDate: '',
@@ -31,8 +44,9 @@ const useEmployeeForm = (addEmployee) => {
       attributes: [],
     },
     validationSchema: SignupSchema,
-    onSubmit: (values) => addEmployee(values),
+    onSubmit: (values) => editEmployee(id, values),
   });
+  return formik;
 };
 
-export { useEmployeeForm };
+export { useEmployeeEdit };

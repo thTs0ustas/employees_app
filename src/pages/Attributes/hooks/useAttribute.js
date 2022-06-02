@@ -1,5 +1,7 @@
 import React from 'react';
 import attributeList from '../../../data/ATTRIBUTE_LIST';
+import employeeList from '../../../data/EMPLOYEE_LIST';
+import { remove } from 'lodash';
 
 const useAttribute = () => {
   const [isAdding, setAdd] = React.useState(false);
@@ -20,10 +22,21 @@ const useAttribute = () => {
     setIsEditing({ open: false, id: null });
   };
 
+  const handleDeleteAttribute = (id) => {
+    employeeList.forEach((employee) => {
+      if (employee.info.attributes.includes(id)) {
+        employee.info.attributes = employee.info.attributes.filter((attribute) => attribute !== id);
+      }
+    });
+  };
+
   const deleteAttribute = (id) => {
     const newAttributes = attributes.filter((attribute) => attribute.id !== id);
+    handleDeleteAttribute(id);
     setAttributes([...newAttributes]);
-    attributeList.splice(id, 1);
+
+    remove(attributeList, (attribute) => attribute.id === id);
+
     setIsEditing({ open: false, id: null });
   };
 

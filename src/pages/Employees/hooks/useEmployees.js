@@ -1,5 +1,6 @@
 import React from 'react';
 import employeeList from '../../../data/EMPLOYEE_LIST';
+import { remove } from 'lodash';
 
 const useEmployees = () => {
   const [isAdding, setAdd] = React.useState(false);
@@ -7,7 +8,6 @@ const useEmployees = () => {
   const [employees, setEmployees] = React.useState(employeeList);
 
   const addEmployee = (input) => {
-    console.log('Hook', input);
     let employee = { id: employeeList.length, info: input };
     setEmployees((prev) => [...prev, employee]);
     employeeList.push(employee);
@@ -15,16 +15,16 @@ const useEmployees = () => {
   };
 
   const editEmployee = (id, input) => {
-    let attribute = employees.find((attribute) => attribute.id === id);
-    attribute.name = input;
-    setEmployees([...employees]);
+    let employee = employees.find((employee) => employee.id === id);
+    employee.info = { ...employee.info, ...input };
+    setEmployees((prev) => [...prev, employee]);
     setIsEditing({ open: false, id: null });
   };
 
   const deleteEmployee = (id) => {
-    const newAttributes = employees.filter((attribute) => attribute.id !== id);
-    setEmployees([...newAttributes]);
-    employeeList.splice(id, 1);
+    const newEmployees = employees.filter((attribute) => attribute.id !== id);
+    setEmployees([...newEmployees]);
+    remove(employeeList, (employee) => employee.id === id);
     setIsEditing({ open: false, id: null });
   };
 

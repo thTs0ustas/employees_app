@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Navigation } from './components';
-import { Attributes, Employees, Home } from './pages';
+import { Attributes, Employees, EmployeesMap, Home } from './pages';
 import { Box } from '@mui/material';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="attributes" element={<Attributes />} />
           <Route path="employees" element={<Employees />} />
-          <Route path="map" element={'<Map />'} />
+          <Route path="map" element={<EmployeesMap />} />
         </Routes>
       </Box>
     </>

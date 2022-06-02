@@ -51,6 +51,18 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
         InputLabelProps={{ shrink: true }}
       />
       <TextField
+        name="town"
+        sx={{ width: '90%' }}
+        type="text"
+        margin="normal"
+        onChange={formik.handleChange}
+        error={!!formik.errors.address}
+        label="Town: "
+        value={formik.values.address.town}
+        helperText={formik.errors.town}
+        InputLabelProps={{ shrink: true }}
+      />
+      <TextField
         name="birthDate"
         sx={{ width: '90%' }}
         type="date"

@@ -6,9 +6,9 @@ import moment from 'moment';
 const useEmployeeEdit = (employees, editEmployee, id) => {
   useEffect(() => {
     const {
-      info: { fullName, birthDate, hasCar, address, attributes },
+      info: { fullName, birthDate, hasCar, address, attributes, town },
     } = employees.find((employee) => employee.id === id);
-    formik.setValues({ fullName, birthDate, hasCar, address, attributes }, false);
+    formik.setValues({ fullName, birthDate, hasCar, address, attributes, town }, false);
   }, [id]);
 
   const SignupSchema = Yup.object().shape({
@@ -26,6 +26,7 @@ const useEmployeeEdit = (employees, editEmployee, id) => {
       .required('Required'),
     hasCar: Yup.boolean().required('Required'),
     address: Yup.string().required('Required'),
+    town: Yup.string().required('Required'),
     attributes: Yup.array()
       .of(Yup.string())
       .test(
@@ -41,6 +42,7 @@ const useEmployeeEdit = (employees, editEmployee, id) => {
       birthDate: '',
       hasCar: false,
       address: '',
+      town: '',
       attributes: [],
     },
     validationSchema: SignupSchema,

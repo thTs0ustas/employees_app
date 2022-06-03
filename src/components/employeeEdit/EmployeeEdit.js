@@ -105,6 +105,7 @@ const EmployeeEdit = ({
           control={<Checkbox />}
           label="Has a Car"
           labelPlacement="end"
+          checked={formik.values.hasCar}
           onChange={formik.handleChange}
           value={formik.values.hasCar}
           isInvalid={!!formik.errors.hasCar}

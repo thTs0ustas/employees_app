@@ -3,7 +3,7 @@ import { EmployeeList, EmployeeEdit, EmployeeForm } from '../../components';
 
 import { useEmployees } from './hooks/useEmployees';
 
-import { Box, Grid, Slide, Container } from '@mui/material';
+import { Box, Grid, Slide, Container, Snackbar, Alert } from '@mui/material';
 
 const Employees = () => {
   const props = useEmployees();
@@ -63,6 +63,11 @@ const Employees = () => {
           </Grid>
         )}
       </Grid>
+      <Snackbar open={props.open} autoHideDuration={6000} onClose={() => props.setOpen(false)}>
+        <Alert onClose={() => props.setOpen(false)} severity="success" sx={{ width: '100%' }}>
+          Successfully saved
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

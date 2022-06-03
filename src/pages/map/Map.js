@@ -2,10 +2,24 @@ import React from 'react';
 
 import { Box, Container, Grid } from '@mui/material';
 import GMap from '../../components/gMap/gMap';
+import { MapSelection } from '../../components';
 
 const EmployeesMap = () => {
   const containerRef = React.useRef(null);
 
+  const [selectedAttribute, setSelectedAttribute] = React.useState('');
+  const [selectedAEmployee, setSelectedAEmployee] = React.useState(null);
+  const [markerSelected, setMarkerSelected] = React.useState(null);
+
+  const handleAttributeChange = (event) => {
+    setSelectedAttribute(event.target.value);
+    if (!event.target.value) setSelectedAEmployee(null);
+  };
+  const handleEmployeeChange = (employee) => {
+    if (selectedAEmployee === null || selectedAEmployee !== employee.id) {
+      setSelectedAEmployee(employee.id);
+    } else setSelectedAEmployee(null);
+  };
   return (
     <Container>
       <Grid container>
@@ -19,7 +33,13 @@ const EmployeesMap = () => {
             height: '90vh',
           }}
         >
-          Employee List
+          <MapSelection
+            selectedAEmployee={selectedAEmployee}
+            selectedAttribute={selectedAttribute}
+            handleEmployeeChange={handleEmployeeChange}
+            handleAttributeChange={handleAttributeChange}
+            setMarkerSelected={setMarkerSelected}
+          />
         </Grid>
 
         <Grid
@@ -32,11 +52,7 @@ const EmployeesMap = () => {
           }}
         >
           <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
-            {/*<Slide direction="right" container={containerRef.current}>*/}
-            {/*<Grid item xs={12}>*/}
-            <GMap />
-            {/*</Grid>*/}
-            {/*</Slide>*/}
+            <GMap selected={markerSelected} />
           </Box>
         </Grid>
       </Grid>

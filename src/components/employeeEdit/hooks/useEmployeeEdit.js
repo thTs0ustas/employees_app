@@ -40,7 +40,7 @@ const useEmployeeEdit = (employees, editEmployee, id) => {
     initialValues: {
       fullName: '',
       birthDate: '',
-      hasCar: false,
+      hasCar: '',
       address: '',
       town: '',
       attributes: [],

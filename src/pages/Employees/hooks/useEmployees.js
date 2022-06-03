@@ -6,12 +6,13 @@ const useEmployees = () => {
   const [isAdding, setAdd] = React.useState(false);
   const [isEditing, setEdit] = React.useState({ open: false, id: null });
   const [employees, setEmployees] = React.useState(employeeList);
-
+  const [open, setOpen] = React.useState(false);
   const addEmployee = (input) => {
     let employee = { id: employeeList.length, info: input };
     setEmployees((prev) => [...prev, employee]);
     employeeList.push(employee);
     setIsAdding(!isAdding);
+    setOpen(true);
   };
 
   const editEmployee = (id, input) => {
@@ -19,6 +20,7 @@ const useEmployees = () => {
     employee.info = { ...employee.info, ...input };
     setEmployees((prev) => [...prev, employee]);
     setIsEditing({ open: false, id: null });
+    setOpen(true);
   };
 
   const deleteEmployee = (id) => {
@@ -48,6 +50,8 @@ const useEmployees = () => {
     employees,
     setEmployees,
     addEmployee,
+    open,
+    setOpen,
   };
 };
 

@@ -1,4 +1,4 @@
-export { default as EmployeesMap } from './map/Map';
+export { default as EmployeesMap } from './Map/Map';
 
 export { Home } from './Home/Home';
 export { Attributes } from './Attributes/Attributes';

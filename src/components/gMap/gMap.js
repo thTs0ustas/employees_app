@@ -7,6 +7,7 @@ import { isNull } from 'lodash';
 
 const GMap = ({ selected }) => {
   const iconBase = 'http://maps.google.com/mapfiles/kml/paddle/grn-circle.png';
+  const [coords, setCoords] = React.useState([]);
 
   let map;
   const mapRef = React.useRef();
@@ -56,9 +57,25 @@ const GMap = ({ selected }) => {
         );
         const lat = data.features.at(-1).geometry.coordinates.at(1);
         const lng = data.features.at(-1).geometry.coordinates.at(0);
+        setCoords((coords) => [...coords, { id: employee.id, coords: { lat, lng } }]);
         addMarker({ lat, lng }, employee);
       })
     );
+    employeeList.forEach((employee) => {
+      if (employee.id !== selected) {
+        const selectedEmployeeCoords = coords.find((c) => c.id === selected);
+        const employeeCoords = coords.find((c) => c.id === employee.id);
+        console.log(selectedEmployeeCoords, employeeCoords);
+        new window.google.maps.Polyline({
+          path: [selectedEmployeeCoords.coords, employeeCoords.coords],
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map,
+        });
+      }
+    });
   };
   React.useEffect(() => {
     initMap();

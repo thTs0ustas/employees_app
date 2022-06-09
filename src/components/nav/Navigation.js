@@ -1,9 +1,3 @@
-// import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import './styles/navigation.css';
-// import { Navbar, Nav, Container } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
-
 import * as React from 'react';
 import {
   AppBar,
@@ -20,6 +14,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { navStyles } from './styles/navStyles';
 
 const pages = ['Attributes', 'Employees', 'Map'];
 
@@ -35,30 +30,15 @@ const Navigation = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ height: '10vh', display: 'flex', justifyContent: 'center' }}>
+    <AppBar position="static" sx={navStyles.appBar}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            as={Link}
-            to="/"
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <AdbIcon sx={navStyles.logo} />
+          <Typography as={Link} to="/" variant="h6" noWrap component="a" sx={navStyles.typography}>
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={navStyles.iconBox}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -83,9 +63,7 @@ const Navigation = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              sx={navStyles.menu}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -93,7 +71,7 @@ const Navigation = () => {
                     as={Link}
                     to={`/${page.toLowerCase()}`}
                     textAlign="center"
-                    sx={{ textDecoration: 'none', color: 'inherit' }}
+                    sx={navStyles.menuItem}
                   >
                     {page}
                   </Typography>
@@ -101,7 +79,7 @@ const Navigation = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon sx={navStyles.logo2} />
           <Typography
             as={Link}
             to="/"
@@ -109,27 +87,18 @@ const Navigation = () => {
             noWrap
             component="a"
             href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+            sx={navStyles.typography2}
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={navStyles.iconBox2}>
             {pages.map((page) => (
               <Button
                 as={Link}
                 to={`/${page.toLowerCase()}`}
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}
+                sx={navStyles.button}
               >
                 {page}
               </Button>

@@ -13,6 +13,7 @@ import {
 import attributeList from '../../data/ATTRIBUTE_LIST';
 import employeeList from '../../data/EMPLOYEE_LIST';
 import { isNull } from 'lodash';
+import { mapSelectionStyles } from './styles/mapSelectionStyles';
 
 const MapSelection = ({
   selectedAttribute,
@@ -26,10 +27,7 @@ const MapSelection = ({
       <Typography variant="h4" component="h2" gutterBottom>
         Attribute Selection
       </Typography>
-      <FormControl
-        variant="standard"
-        sx={{ margin: '1px 1px 10px 1px ', minWidth: 120, width: '100%' }}
-      >
+      <FormControl variant="standard" sx={mapSelectionStyles.attrSelections}>
         <InputLabel id="attribute-list">Attributes</InputLabel>
         <Select
           labelId="attribute-list"
@@ -49,17 +47,12 @@ const MapSelection = ({
       <Typography variant="p" component="h3" gutterBottom>
         Employees With Selected Attribute
       </Typography>
-      <List sx={{ marginTop: 5, bgcolor: 'gray.600', height: '90%' }}>
+      <List sx={mapSelectionStyles.list}>
         {employeeList
           .filter((employee) => employee.info.attributes.includes(selectedAttribute))
           .map((employee) => (
             <ListItemButton
-              sx={{
-                marginTop: 1,
-                borderRadius: '5px',
-                width: '100%',
-                bgcolor: 'grey.300',
-              }}
+              sx={mapSelectionStyles.listItem}
               key={employee.id}
               selected={selectedAEmployee === employee.id}
               onClick={() => handleEmployeeChange(employee)}

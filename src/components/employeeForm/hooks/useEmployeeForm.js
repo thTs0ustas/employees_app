@@ -7,9 +7,6 @@ const useEmployeeForm = (addEmployee) => {
     fullName: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      // .test('fullName', 'Already exists', (value) =>
-      //   employees.every((item) => item.info.name !== value)
-      // )
 
       .required('Required'),
     birthDate: Yup.string()

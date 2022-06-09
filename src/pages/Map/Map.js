@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Container, Grid } from '@mui/material';
 import GMap from '../../components/gMap/gMap';
 import { MapSelection } from '../../components';
+import { styles } from '../styles/styles';
 
 const EmployeesMap = () => {
   const containerRef = React.useRef(null);
@@ -23,16 +24,7 @@ const EmployeesMap = () => {
   return (
     <Container>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          sx={{
-            padding: '5em 2em 0 2em',
-            boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-            height: '90vh',
-          }}
-        >
+        <Grid item xs={12} sm={4} sx={styles.outerGridItem}>
           <MapSelection
             selectedAEmployee={selectedAEmployee}
             selectedAttribute={selectedAttribute}
@@ -42,16 +34,8 @@ const EmployeesMap = () => {
           />
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          sx={{
-            padding: '2em',
-            height: '90vh',
-          }}
-        >
-          <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+        <Grid item xs={12} sm={8} sx={styles.gridItem}>
+          <Box ref={containerRef} sx={styles.box}>
             <GMap selected={markerSelected} />
           </Box>
         </Grid>

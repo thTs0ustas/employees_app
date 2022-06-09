@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import attributeList from '../../data/ATTRIBUTE_LIST';
 import { useEmployeeEdit } from './hooks/useEmployeeEdit';
+import { empEditStyles } from './styles/empEditStyles';
 
 const EmployeeEdit = ({
   editEmployee,
@@ -28,12 +29,12 @@ const EmployeeEdit = ({
   const options = attributeList.map((item) => item.name);
   return (
     <Box component="form">
-      <Typography variant="h2" component="h3" sx={{ fontSize: 24, fontWeight: 700 }}>
+      <Typography variant="h2" component="h3" sx={empEditStyles.typo}>
         EDIT EMPLOYEE
       </Typography>
       <TextField
         name="fullName"
-        sx={{ width: '90%' }}
+        sx={empEditStyles.textField}
         type="text"
         margin="normal"
         onChange={formik.handleChange}
@@ -45,7 +46,7 @@ const EmployeeEdit = ({
       />
       <TextField
         name="address"
-        sx={{ width: '90%' }}
+        sx={empEditStyles.textField}
         type="text"
         margin="normal"
         onChange={formik.handleChange}
@@ -57,7 +58,7 @@ const EmployeeEdit = ({
       />
       <TextField
         name="town"
-        sx={{ width: '90%' }}
+        sx={empEditStyles.textField}
         type="text"
         margin="normal"
         onChange={formik.handleChange}
@@ -69,7 +70,7 @@ const EmployeeEdit = ({
       />
       <TextField
         name="birthDate"
-        sx={{ width: '90%' }}
+        sx={empEditStyles.textField}
         type="date"
         margin="normal"
         onChange={formik.handleChange}
@@ -80,7 +81,7 @@ const EmployeeEdit = ({
         InputLabelProps={{ shrink: true }}
       />
 
-      <FormControl sx={{ width: 300, '&.MuiFormControl-root': { marginTop: '16px' } }}>
+      <FormControl sx={empEditStyles.select}>
         <InputLabel id="selectAtr">Attributes</InputLabel>
         <Select
           labelId="selectAtr"
@@ -99,7 +100,7 @@ const EmployeeEdit = ({
           ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ mt: 5, width: 300, display: 'block' }}>
+      <FormControl sx={empEditStyles.checkbox}>
         <FormControlLabel
           name="hasCar"
           control={<Checkbox />}
@@ -111,7 +112,7 @@ const EmployeeEdit = ({
           isInvalid={!!formik.errors.hasCar}
         />
       </FormControl>
-      <ButtonGroup aria-label="button group" sx={{ mt: 5 }}>
+      <ButtonGroup aria-label="button group" sx={empEditStyles.button}>
         <Button
           disabled={!!formik.errors.attribute}
           type="submit"

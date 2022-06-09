@@ -4,6 +4,7 @@ import './attributeList.css';
 
 import { useAttribute } from './hooks/useAttribute';
 import { Box, Container, Grid, Slide } from '@mui/material';
+import { styles } from '../styles/styles';
 
 const Attributes = () => {
   const containerRef = React.useRef(null);
@@ -11,29 +12,12 @@ const Attributes = () => {
   return (
     <Container>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          sx={{
-            padding: '5em 2em 0 2em',
-            boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-            height: '90vh',
-          }}
-        >
+        <Grid item xs={12} sm={4} sx={styles.outerGridItem}>
           <AttributeList {...props} />
         </Grid>
         {props.isAdding && (
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            sx={{
-              padding: '5em 2em 0 2em',
-              height: '90vh',
-            }}
-          >
-            <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+          <Grid item xs={12} sm={8} sx={styles.gridItem}>
+            <Box ref={containerRef} sx={styles.box}>
               <Slide direction="right" container={containerRef.current} in={props.isAdding}>
                 <Grid item xs={12}>
                   <AttributeForm {...props} />
@@ -43,16 +27,8 @@ const Attributes = () => {
           </Grid>
         )}
         {props.isEditing.open && (
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            sx={{
-              padding: '5em 2em 0 2em',
-              height: '90vh',
-            }}
-          >
-            <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+          <Grid item xs={12} sm={8} sx={styles.gridItem}>
+            <Box ref={containerRef} sx={styles.box}>
               <Slide direction="right" container={containerRef.current} in={props.isEditing.open}>
                 <Grid item xs={12}>
                   <AttributeEdit {...props} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Button, ListItemButton, Typography, Divider } from '@mui/material';
+import { attrListStyles } from './styles/attrListStyles';
 
 const AttributeList = ({ setIsEditing, isAdding, setIsAdding, attributeList }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -14,7 +15,7 @@ const AttributeList = ({ setIsEditing, isAdding, setIsAdding, attributeList }) =
       </Typography>
       <Divider />
       <Button
-        sx={{ width: 100, marginTop: 2 }}
+        sx={attrListStyles.button}
         color="primary"
         disabled={isAdding}
         onClick={() => setIsAdding(!isAdding)}
@@ -22,16 +23,11 @@ const AttributeList = ({ setIsEditing, isAdding, setIsAdding, attributeList }) =
       >
         Add
       </Button>
-      <List sx={{ marginTop: 5, bgcolor: 'gray.600' }}>
+      <List sx={attrListStyles.list}>
         {attributeList.map((attribute) => (
           <>
             <ListItemButton
-              sx={{
-                marginTop: 1,
-                borderRadius: '5px',
-                width: '100%',
-                bgcolor: 'grey.300',
-              }}
+              sx={attrListStyles.listItem}
               key={attribute.id}
               selected={selectedIndex === attribute.id}
               onClick={(event) => {

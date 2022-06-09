@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Button, Divider, ListItemButton, List } from '@mui/material';
+import { empListStyles } from './styles/empFormStyles';
 
 const EmployeeList = ({ setIsEditing, isAdding, setIsAdding, employeeList }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -15,7 +16,7 @@ const EmployeeList = ({ setIsEditing, isAdding, setIsAdding, employeeList }) => 
 
       <Divider />
       <Button
-        sx={{ width: 100, marginTop: 2 }}
+        sx={empListStyles.button}
         color="primary"
         disabled={isAdding}
         onClick={() => setIsAdding(!isAdding)}
@@ -23,15 +24,10 @@ const EmployeeList = ({ setIsEditing, isAdding, setIsAdding, employeeList }) => 
       >
         Add
       </Button>
-      <List sx={{ marginTop: 5, bgcolor: 'gray.600' }}>
+      <List sx={empListStyles.list}>
         {employeeList.map((employee) => (
           <ListItemButton
-            sx={{
-              marginTop: 1,
-              borderRadius: '5px',
-              width: '100%',
-              bgcolor: 'grey.300',
-            }}
+            sx={empListStyles.listItem}
             key={employee.id}
             selected={selectedIndex === employee.id}
             onClick={(event) => {

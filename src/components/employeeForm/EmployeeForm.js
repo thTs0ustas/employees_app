@@ -16,6 +16,7 @@ import {
   Button,
   ButtonGroup,
 } from '@mui/material';
+import { empFormStyles } from './styles/empFormStyles';
 
 const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
   const formik = useEmployeeForm(addEmployee);
@@ -23,12 +24,12 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
 
   return (
     <Box component="form">
-      <Typography variant="h2" component="h3" sx={{ fontSize: 24, fontWeight: 700 }}>
+      <Typography variant="h2" component="h3" sx={empFormStyles.typo}>
         NEW EMPLOYEE
       </Typography>
       <TextField
         name="fullName"
-        sx={{ width: '90%' }}
+        sx={empFormStyles.textField}
         type="text"
         margin="normal"
         onChange={formik.handleChange}
@@ -40,7 +41,7 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
       />
       <TextField
         name="address"
-        sx={{ width: '90%' }}
+        sx={empFormStyles.textField}
         type="text"
         margin="normal"
         onChange={formik.handleChange}
@@ -52,7 +53,7 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
       />
       <TextField
         name="town"
-        sx={{ width: '90%' }}
+        sx={empFormStyles.textField}
         type="text"
         margin="normal"
         onChange={formik.handleChange}
@@ -64,7 +65,7 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
       />
       <TextField
         name="birthDate"
-        sx={{ width: '90%' }}
+        sx={empFormStyles.textField}
         type="date"
         margin="normal"
         onChange={formik.handleChange}
@@ -75,7 +76,7 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
         InputLabelProps={{ shrink: true }}
       />
 
-      <FormControl sx={{ width: 300, '&.MuiFormControl-root': { marginTop: '16px' } }}>
+      <FormControl sx={empFormStyles.select}>
         <InputLabel id="selectAtr">Attributes</InputLabel>
         <Select
           labelId="selectAtr"
@@ -94,7 +95,7 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
           ))}
         </Select>
       </FormControl>
-      <FormControl sx={{ mt: 5, width: 300, display: 'block' }}>
+      <FormControl sx={empFormStyles.checkbox}>
         <FormControlLabel
           name="hasCar"
           control={<Checkbox />}
@@ -105,7 +106,7 @@ const EmployeeForm = ({ addEmployee, isAdding, setIsAdding }) => {
           isInvalid={!!formik.errors.hasCar}
         />
       </FormControl>
-      <ButtonGroup aria-label="button group" sx={{ mt: 5 }}>
+      <ButtonGroup aria-label="button group" sx={empFormStyles.button}>
         <Button
           disabled={!!formik.errors.attribute}
           type="submit"

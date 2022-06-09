@@ -4,6 +4,7 @@ import { EmployeeList, EmployeeEdit, EmployeeForm } from '../../components';
 import { useEmployees } from './hooks/useEmployees';
 
 import { Box, Grid, Slide, Container, Snackbar, Alert } from '@mui/material';
+import { styles } from '../styles/styles';
 
 const Employees = () => {
   const props = useEmployees();
@@ -12,29 +13,12 @@ const Employees = () => {
   return (
     <Container>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          sx={{
-            padding: '5em 2em 0 2em',
-            boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-            height: '90vh',
-          }}
-        >
+        <Grid item xs={12} sm={4} sx={styles.outerGridItem}>
           <EmployeeList {...props} />
         </Grid>
         {props.isAdding && (
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            sx={{
-              padding: '5em 2em 0 2em',
-              height: '90vh',
-            }}
-          >
-            <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+          <Grid item xs={12} sm={8} sx={styles.gridItem}>
+            <Box ref={containerRef} sx={styles.box}>
               <Slide direction="right" container={containerRef.current} in={props.isAdding}>
                 <Grid item xs={12}>
                   <EmployeeForm {...props} />
@@ -44,16 +28,8 @@ const Employees = () => {
           </Grid>
         )}
         {props.isEditing.open && (
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            sx={{
-              padding: '5em 2em 0 2em',
-              height: '90vh',
-            }}
-          >
-            <Box ref={containerRef} sx={{ overflow: 'hidden', width: '100%' }}>
+          <Grid item xs={12} sm={8} sx={styles.gridItem}>
+            <Box ref={containerRef} sx={styles.box}>
               <Slide direction="right" container={containerRef.current} in={props.isEditing.open}>
                 <Grid item xs={12}>
                   <EmployeeEdit {...props} />

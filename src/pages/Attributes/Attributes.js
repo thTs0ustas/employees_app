@@ -1,6 +1,5 @@
 import React from 'react';
 import { AttributeForm, AttributeList, AttributeEdit } from '../../components';
-import './attributeList.css';
 
 import { useAttribute } from './hooks/useAttribute';
 import { Box, Container, Grid, Slide } from '@mui/material';

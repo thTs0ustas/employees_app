@@ -2,7 +2,6 @@ import React from 'react';
 import attributeList from '../../../data/ATTRIBUTE_LIST';
 import employeeList from '../../../data/EMPLOYEE_LIST';
 import { remove } from 'lodash';
-
 const useAttribute = () => {
   const [isAdding, setAdd] = React.useState(false);
   const [isEditing, setEdit] = React.useState({ open: false, id: null });

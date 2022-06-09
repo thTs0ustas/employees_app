@@ -53,7 +53,7 @@ const GMap = ({ selected }) => {
     await Promise.all(
       employeeList.map(async (employee) => {
         const { data } = await axios.get(
-          `https://api.geoapify.com/v1/geocode/search?text=${employee.info.address} ${employee.info.town} gr&apiKey=cee786390cea4f71b6f93c0285ebd9bf`
+          `https://api.geoapify.com/v1/geocode/search?text=${employee.info.address} ${employee.info.town} Greece &apiKey=cee786390cea4f71b6f93c0285ebd9bf`
         );
         const lat = data.features.at(-1).geometry.coordinates.at(1);
         const lng = data.features.at(-1).geometry.coordinates.at(0);

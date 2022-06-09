@@ -35,7 +35,7 @@ const Navigation = () => {
         <Toolbar disableGutters>
           <AdbIcon sx={navStyles.logo} />
           <Typography as={Link} to="/" variant="h6" noWrap component="a" sx={navStyles.typography}>
-            LOGO
+            HOME
           </Typography>
 
           <Box sx={navStyles.iconBox}>
